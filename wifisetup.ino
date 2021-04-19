@@ -3,9 +3,9 @@
 #include <WifiClient.h>
 
 
-IPAddress server(192,168,10,49);
-char ssid[] = "Ylakerta";       
-char pass[] = "nuppuverkko";  
+IPAddress server();
+char ssid[] = "";       
+char pass[] = "";  
 int status = WL_IDLE_STATUS;     
 
 void setup() {
