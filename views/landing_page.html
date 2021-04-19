@@ -1,0 +1,21 @@
+<script>
+   setInterval(function () {
+       console.log("doing stuff")
+        fetch('/paljudata', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(response => {
+            console.log(response.message)
+            document.getElementById("message").innerHTML = response.message;
+        })
+        .catch(function(err) {
+          // Error :(
+        });
+      }, 3000)
+</script>
+
+
+<h1 id = "message"><%= message %></h1>
