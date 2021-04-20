@@ -22,7 +22,9 @@
                 "j:\\arduino\\hardware\\tools\\avr\\lib\\gcc\\avr\\7.3.0\\include-fixed",
                 "j:\\arduino\\hardware\\tools\\avr\\avr\\include",
                 "J:\\Arduino\\sketchbook\\libraries\\WiFi101\\src",
-                "J:\\Arduino\\libraries\\Bridge\\src"
+                "J:\\Arduino\\libraries\\Bridge\\src",
+                "J:\\Arduino\\sketchbook\\libraries\\Grove_Temper_Humidity_TH02",
+                "J:\\Arduino\\hardware\\arduino\\avr\\libraries\\Wire\\src"
             ],
             "forcedInclude": [
                 "J:\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"

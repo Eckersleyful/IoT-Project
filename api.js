@@ -8,18 +8,23 @@ app.engine('html', require('ejs').renderFile)
 app.use(bp.json())
 app.use(bp.urlencoded({ extended: true }))
 app.locals.data = {}
-
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+ })
 app.post('/palju', (req, res) => {
     console.log("Arduino pinged")
-    console.log(JSON.stringify(req.body));
-    req.app.locals.data = {message: req.body.message}
+    var new_JSON = req.body;
+    req.app.locals.data = new_JSON;
+    console.log(req.app.locals.data.temperature);
     res.sendStatus(200)
 })
 app.get('/palju', (req, res) => {
 
     console.log(req.app.locals.data);
 
-    res.render("landing_page.html", message = req.app.locals.data);
+    res.render("landing_page.html", temperature = req.app.locals.data.temperature);
 });
 app.get('/paljudata', (req, res) => {
     console.log(req.app.locals.data);

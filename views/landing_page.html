@@ -1,7 +1,7 @@
 <script>
    setInterval(function () {
        console.log("doing stuff")
-        fetch('/paljudata', {
+        fetch('http://localhost:3000/paljudata', {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -9,13 +9,33 @@
         .then(response => response.json())
         .then(response => {
             console.log(response.message)
-            document.getElementById("message").innerHTML = response.message;
+
+
+            document.getElementById("temperature").innerHTML = "Tämänhetkinen lämpötila " +response.temperature;
+            water_string = " ei ole"
+            if(response.isFull){
+                water_string = " on";
+            }
+            var water_msg = "Palju " + water_string + " täynnä vettä"
+            document.getElementById("water").innerHTML = water_msg;
+
+            if(document.getElementById("quantity").value != "" && response.temperature > document.getElementById("quantity").value){
+                alert("Palju on lämmin!"); 
+
+            }
         })
         .catch(function(err) {
           // Error :(
         });
-      }, 3000)
+      }, 10000)
+
+    
 </script>
 
+<form>
+    <label for ="quantity">Kohdelämpötila paljulle</label>
+    <input type="number" id="quantity" name="quantity" min="30" max="100">
+</form>
 
-<h1 id = "message"><%= message %></h1>
+<h1 id = "water"></h1>
+<h1 id = "temperature"></h1>

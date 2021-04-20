@@ -1,11 +1,14 @@
 #include <SPI.h>
 #include <WiFi101.h>
 #include <WifiClient.h>
+#include <TH02_dev.h>
+#include "Arduino.h"
+#include "Wire.h"
 
 
-IPAddress server();
-char ssid[] = "";       
-char pass[] = "";  
+IPAddress server(192,168,10,49);
+char ssid[] = "Ylakerta";       
+char pass[] = "nuppuverkko";  
 int status = WL_IDLE_STATUS;     
 
 void setup() {
@@ -37,12 +40,9 @@ void printCurrentNet() {
   Serial.println(WiFi.SSID());
 }
 void sendSensorData(){
-  /*HttpClient client; 
-  client.setHeader("Content-Type: application/text");
-  Serial.println("Trying to send data");
-  Serial.println(client.post("http://192.168.10.49:3000/palju", "cat"));*/
+
   WiFiClient client;
-  String data = "{\"message\": \"rip\"}";
+  String data = "{\"temperature\": 45, \"isFull\": true}";
   if(!client.connected()){
     if(client.connect(server, 3000)) {
       Serial.println("Connected");
@@ -50,7 +50,7 @@ void sendSensorData(){
 
       client.println("User-Agent: Arduino/1.0");
       client.println("Connection: close");
-      client.println("Content-Type: application/x-www-form-urlencoded");
+      client.println("Content-Type: application/json");
       client.print("Content-Length: ");
       client.println(data.length());
       client.println(); 
