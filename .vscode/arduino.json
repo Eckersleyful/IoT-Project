@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
-    "sketch": "wifisetup.ino",
+    "sketch": "arduino\\wifisetup.ino",
     "port": "COM3",
     "programmer": "arduino:arduinoisp"
 }

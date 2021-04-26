@@ -10,13 +10,13 @@
  */
 IPAddress server(192,168,10,49);
 int port = 3000;
-char ssid[] = "";       
-char pass[] = "";  
+char ssid[] = "Ylakerta";       
+char pass[] = "nuppuverkko";  
 int status = WL_IDLE_STATUS;
 
 // Device ID used when sending a report.
 // Receive new id by sending a post reuest to backends '/device/new/'.
-String deviceId = String("");
+String deviceId = String("6086dd6bec96ec00126b4220");
 
 // Request header created during setup().
 String requestHeader = String("");

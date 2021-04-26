@@ -34,6 +34,9 @@
           <div class="list-group-item h-100" aria-current="true">
           </div>
           <div class="list-group-item text-center" aria-current="true">
+            <is-full :value="chartData.isFull"></is-full>
+          </div>  
+          <div class="list-group-item text-center" aria-current="true">
             <button type="button" class="btn btn-outline-primary" v-on:click="tryAddDevice()">
               New Device
             </button>
@@ -57,8 +60,11 @@
         //console.log(this.chartData, this.options);
         this.renderChart(this.chartData, this.options)
       }
-    })
-
+    }),
+    Vue.component('is-full', {
+      props: ["value"],
+      template: '<div v-if="value">Palju is full</div> <div v-else>Palju is empty</div>'
+    });
     new Vue({
       el: '#app',
       data: {
@@ -67,6 +73,7 @@
         chartData: {
           id: '',
           labels: ['', ''],
+          isFull: '',
           datasets: [
             {
               label: 'Temperature',
@@ -100,6 +107,7 @@
                 if (res._id != this.chartData.id || (res.reports.length > 0 && res.reports.length != this.chartData.datasets[0].data.length)) {
                   this.chartData = {
                     id: res._id,
+                    isFull: res.reports[res.reports.length-1].isFull,
                     labels: res.reports.map(v => ''),
                     datasets: [{
                       ...this.chartData.datasets[0],
