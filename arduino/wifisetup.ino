@@ -8,10 +8,10 @@
 /**
  * Wifi settings.
  */
-IPAddress server(192,168,10,49);
-int port = 3000;
-char ssid[] = "Ylakerta";       
-char pass[] = "nuppuverkko";  
+IPAddress server();
+int port = ;
+char ssid[] = "";       
+char pass[] = "";  
 int status = WL_IDLE_STATUS;
 
 // Device ID used when sending a report.
